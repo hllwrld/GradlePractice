@@ -7,6 +7,16 @@ class RouterPlugin implements Plugin<Project> {
 
     void apply(Project project) {
         println("hllwrld plugin success!!")
+
+        project.getExtensions().create("router", RouterExtension)
+
+        project.afterEvaluate {
+            RouterExtension routerExtension = project["router"]
+            println("hllwrld:"+routerExtension.wikiDir)
+        }
+
     }
+
+
 
 }
