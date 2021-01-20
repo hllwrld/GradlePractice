@@ -6,17 +6,15 @@ plugins {
 apply plugin : 'com.hllwrld.router'
 
 router {
-    wikiDir getRootDir().absolutePath
+    wikiDir rootDir.absolutePath
 }
-
-
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.hllwrld.gradlepractice"
-        minSdkVersion 26
+        applicationId "com.hllwrld.routerDemo"
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -50,53 +48,3 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
-
-def myAndroid  = {
-    compileSdkVersion 30
-    compileOptions {
-        sourceCompatibility 1.0
-    }
-}
-
-Android a = new Android()
-myAndroid.setDelegate(a)
-myAndroid.call()
-
-println(a)
-
-class CompileOptions {
-    float sourceCompatibility
-
-    def sourceCompatibility(float num) {
-        sourceCompatibility = num
-    }
-
-    @Override
-    String toString() {
-        return "sourceCompatibility="+ sourceCompatibility
-    }
-}
-
-class Android {
-    int compileSdkVersion
-    CompileOptions compileOptions = new CompileOptions()
-
-    def compileSdkVersion(int version) {
-       compileSdkVersion =  version
-    }
-
-    def compileOptions(Closure closure) {
-        closure.setDelegate(compileOptions)
-        closure.call()
-    }
-
-
-    @Override
-    public String toString() {
-        return "Android{" +
-                "compileSdkVersion=" + compileSdkVersion +
-                ", compileOptions=" + compileOptions +
-                '}';
-    }
-}
-
